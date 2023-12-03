@@ -124,12 +124,13 @@ export const checkOwnerLogin = async(req , res)=>{
    
     if(!loginOwner) {
       res.status(404).send({message: 'Please enter your email correctly'})
+      return;
     }
    
      const comparePassword = await bcrypt.compare(password , loginOwner.password )
      if(!comparePassword) {
      res.status(404).send({message: 'Please enter your password correctly'})
-     
+     return;
     }
   
     const token = jwt.sign({
@@ -146,5 +147,6 @@ export const checkOwnerLogin = async(req , res)=>{
   } catch (error) {
     console.log(error)
     res.status(404).send({message: "Invalid login", error})
+    return;
   }
 }

@@ -9,10 +9,12 @@ export const checkResturent = async(req , res)=>{
         const findResturents = await prisma.resturent.findMany({})
         if(!findResturents.length > 0){
             res.status(404).send({message: "data about restures not found yet"})
+            return;
         }
         res.status(200).send({message:"resturent found", findResturents})
     } catch (error) {
-        res.status(404).send({message: "something went wrong found resturent"});
+        res.status(404).send({message: "something went wrong found resturent" , error});
+        return;
     }
 }
 
@@ -35,6 +37,7 @@ export const addResturent = async(req , res)=>{
 
         if(!addNew){
             res.status(404).send({message: "Please try again registered resturent"})
+            return;
         }
 
 res.status(200).send({message: "success created resturent " , addNew}) 
@@ -42,5 +45,6 @@ res.status(200).send({message: "success created resturent " , addNew})
     } catch (error) {
         res.status(404).send({message: "not created", error: error });
         console.log(error)
+        return;
     }
 }

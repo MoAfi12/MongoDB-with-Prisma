@@ -18,6 +18,7 @@ const tokenWithout = token.split(" ")[1]
 jwt.verify(tokenWithout , SECRET_KEY , (error , decoded)=>{
 if(error){
     res.status(401).send({message: "Invalid token without secret key"})
+    return;
 }
 req.decoded = decoded
 
