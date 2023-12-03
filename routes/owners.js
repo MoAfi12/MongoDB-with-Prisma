@@ -1,6 +1,5 @@
 import express from 'express';
 import  {addOwner, checkOwnerLogin, getOwners, getSpecial, updatedOwner}  from '../controllers/owners.js';
-import { authenticate } from '../middleware/middleware.js';
 
 
 const ownerRouter = express.Router()
