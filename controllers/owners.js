@@ -15,6 +15,7 @@ export const getOwners =  async (req, res) => {
        res.status(200).send({message: 'Owners' , owners: owners});
      } else {
        res.status(404).json({ message: "Owners not found" });
+       return;
      }
    } catch (err) {
      res.status(500).json({ message: "Failed to get owners", err });
